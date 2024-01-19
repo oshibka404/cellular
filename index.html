@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elementary Cellular Automata Generator</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <main>
+        <canvas id="canvas"></canvas>
+    </main>
+    <form id="form">
+        <section>
+            <h2>ECA Generator</h2>
+            <h3>Image</h3>
+            <label for="width">
+                width
+                <input type="number" value="1080" id="width" min="1" max="9999"/>
+            </label>
+            <label for="height">
+                height
+                <input type="number" value="1080" id="height" min="1" max="9999"/>
+            </label>
+        </section>
+        <section>
+            <h3>Automaton</h3>
+            <label for="rule">
+                rule
+                <input type="number" value="182" id="rule" min="0" max="255"/>
+            </label>
+            <label for="edges">
+                edges
+                <select id="edges">
+                    <option value="dead" selected>dead</option>
+                    <option value="alive" >alive</option>
+                    <option value="density">follow density</option>
+                    <option value="random">random</option>
+                    <option value="loop">loop</option>
+                </select>
+            </label>
+            <label for="density">
+                initial state density
+                <input type="range" value="0.5" min="0" max="1" step="0.01" id="density"/>
+            </label>
+        </section>
+        <section>
+            <h3>Appearance</h3>
+            <label for="pixelsize">
+                Pixel size
+                <input type="number" value="8" id="pixelsize" min="1" max="128"/>
+            </label>
+            <label for="color">
+                Color
+                <input type="color" value="#3490f9" id="color"/>
+            </label>
+            <label for="background">
+                Background
+                <input type="color" value="#21d966" id="background"/>
+            </label>
+        </section>
+        <button type="submit" id="generate">Re-generate</button>
+        <div id="running-time"></div>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
