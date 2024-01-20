@@ -33,14 +33,13 @@
                 <select id="edges">
                     <option value="dead" selected>dead</option>
                     <option value="alive" >alive</option>
-                    <option value="density">follow density</option>
                     <option value="random">random</option>
                     <option value="loop">loop</option>
                 </select>
             </label>
             <label for="density">
                 initial state density
-                <input type="range" value="0.5" min="0" max="1" step="0.01" id="density"/>
+                <input type="range" value="0" min="0" max="1" step="0.01" id="density"/>
             </label>
         </section>
         <section>
@@ -61,7 +60,6 @@
         <button type="submit" id="generate">Re-generate</button>
         <div id="running-time"></div>
     </form>
-    <script src="drawAutomaton.js"></script>
-    <script src="script.js"></script>
+    <script type="module" src="./index.ts"></script>
 </body>
 </html>
