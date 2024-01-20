@@ -1,4 +1,3 @@
-const canvasEl = document.getElementById('canvas');
 const widthEl = document.getElementById('width');
 const heightEl = document.getElementById('height');
 const ruleEl = document.getElementById('rule');
@@ -10,6 +9,7 @@ const generateEl = document.getElementById('generate');
 const densityEl = document.getElementById('density');
 const form = document.getElementById('form');
 
+const canvasEl = document.getElementById('canvas');
 const ctx = canvasEl.getContext('2d');
 
 const getInitialState = (size) => {

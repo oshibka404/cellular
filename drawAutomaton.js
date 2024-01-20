@@ -4,7 +4,7 @@ const _getEdgeCellState = (edges, isLeft, state) => {
     } else if (edges === 'alive') {
         return 1;
     } else if (edges === 'density') {
-        const density = parseFloat(densityEl.value)
+        const density = appState.automaton.density
         return Math.random() < density ? 1 : 0;
     } else if (edges === 'random') {
         return Math.round(Math.random())
