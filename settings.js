@@ -52,7 +52,7 @@ function generate() {
 form.addEventListener('change' , generate)
 form.addEventListener('submit', (e) => {
     e.preventDefault();
+    generate();
 })
-generateEl.addEventListener('click', generate);
 
 generate();
