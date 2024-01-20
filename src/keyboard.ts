@@ -1,15 +1,5 @@
-// const canvasEl = document.getElementById('canvas');
-// const widthEl = document.getElementById('width');
-// const heightEl = document.getElementById('height');
-// const ruleEl = document.getElementById('rule');
-// const edgesEl = document.getElementById('edges');
-// const pixelsizeEl = document.getElementById('pixelsize');
-// const colorEl = document.getElementById('color');
-// const backgroundEl = document.getElementById('background');
-// const generateEl = document.getElementById('generate');
-// const densityEl = document.getElementById('density');
-
-// const form = document.getElementById('form');
+import { densityEl, ruleEl, edgesEl, pixelsizeEl, colorEl, backgroundEl } from './form';
+import { generate } from './form';
 
 const colors = [
     '#000000',
@@ -23,8 +13,9 @@ const colors = [
     '#FF8000',
     '#FF0080',
 ]
+const DENSITY_STEP = 0.05;
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', (e: KeyboardEvent) => {
     if (e.target !== document.body) {
         return;
     }
@@ -33,21 +24,21 @@ document.addEventListener('keydown', (e) => {
         // Density
         case 'ArrowDown':
             e.preventDefault()
-            densityEl.value -= 0.05
+            densityEl.value = (parseFloat(densityEl.value) - DENSITY_STEP).toString()
             break;
         case 'ArrowUp':
             e.preventDefault()
-            densityEl.value = parseFloat(densityEl.value) + 0.05
+            densityEl.value = (parseFloat(densityEl.value) + DENSITY_STEP).toString()
             break;
         
         // Rule
         case 'ArrowLeft':
             e.preventDefault()
-            ruleEl.value = Math.max(ruleEl.value - 1, ruleEl.min)
+            ruleEl.value = Math.max(parseInt(ruleEl.value, 10) - 1, 0).toString(10)
             break;
         case 'ArrowRight':
             e.preventDefault()
-            ruleEl.value = Math.min(ruleEl.max, parseInt(ruleEl.value, 10) + 1)
+            ruleEl.value = Math.min(255, parseInt(ruleEl.value, 10) + 1).toString(10)
             break;
 
         // Edges
@@ -67,11 +58,11 @@ document.addEventListener('keydown', (e) => {
         // Pixel size
         case 'Equal':
             e.preventDefault()
-            pixelsizeEl.value = Math.min(pixelsizeEl.max, parseInt(pixelsizeEl.value, 10) * 2)
+            pixelsizeEl.value = Math.min(parseInt(pixelsizeEl.max), parseInt(pixelsizeEl.value, 10) * 2).toString(10)
             break;
         case 'Minus':
             e.preventDefault()
-            pixelsizeEl.value = Math.max(pixelsizeEl.min, parseInt(pixelsizeEl.value, 10) / 2)
+            pixelsizeEl.value = Math.max(parseInt(pixelsizeEl.min), parseInt(pixelsizeEl.value, 10) / 2).toString(10)
             break;
 
         // Color
