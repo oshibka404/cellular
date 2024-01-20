@@ -25,7 +25,7 @@ function _drawGeneration(state, i, ctx, pixelSize, color) {
     }
 }
 
-function _updateState(prevState, ruleString, edges) {
+function _updateState(prevState, ruleNumber, edges) {
     const nextState = [];
     for (let j = 0; j < prevState.length; j++) {
         const left = j === 0 ? _getEdgeCellState(edges, true, prevState) : prevState[j - 1] || 0;
@@ -33,7 +33,7 @@ function _updateState(prevState, ruleString, edges) {
         const right = j === prevState.length - 1 ? _getEdgeCellState(edges, false, prevState) : prevState[j + 1] || 0;
 
         const rule = (left << 2) + (center << 1) + right; // 0-7
-        const newStateBit = parseInt(ruleString[7-rule], 10);
+        const newStateBit = (ruleNumber >> rule) % 2;
         nextState.push(newStateBit);
     }
     return nextState;
@@ -47,7 +47,7 @@ function drawAutomaton({
     mainColor,
     backgroundColor,
     initialState,
-    ruleString,
+    ruleNumber,
     edges,
 }) {
     ctx.fillStyle = backgroundColor;
@@ -57,6 +57,6 @@ function drawAutomaton({
 
     for (let i = 0; i < height / pixelSize; i++) {
         _drawGeneration(state, i, ctx, pixelSize, mainColor);
-        state = _updateState(state, ruleString, edges);
+        state = _updateState(state, ruleNumber, edges);
     }
 }

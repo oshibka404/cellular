@@ -32,7 +32,7 @@ function generate() {
     canvasEl.width = width
     canvasEl.height = height
 
-    const ruleString = parseInt(ruleEl.value, 10).toString(2).padStart(8, '0');
+    const ruleNumber = parseInt(ruleEl.value, 10);
 
     drawAutomaton({
         ctx, 
@@ -42,7 +42,7 @@ function generate() {
         mainColor: colorEl.value,
         backgroundColor: backgroundEl.value,
         initialState: getInitialState(Math.ceil(width / pixelSize)),
-        ruleString,
+        ruleNumber,
         edges: edgesEl.value,
     });
 
